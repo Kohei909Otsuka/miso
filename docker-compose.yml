@@ -13,6 +13,16 @@ services:
       POSTGRES_PASSWORD: 'password'
     restart: always
 
+  backend:
+    build:
+      miso_backend
+    volumes:
+      - ./miso_backend:/usr/src/app
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+
   frontend:
     build:
       context: miso_frontend

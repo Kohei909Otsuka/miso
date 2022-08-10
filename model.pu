@@ -1,0 +1,62 @@
+@startuml
+
+
+class User {
+
+}
+note right of User
+  いったんなくていいや
+endnote
+
+
+class CellPhone {
+  id
+  name
+  slug
+  weight
+  thickness
+  width
+  heigth
+  screen_inch
+  panel_kind
+  refresh_rate
+  cpu
+  memory
+  disk
+  is_multi_sim
+}
+note right of CellPhone
+  基本的に、specの値が"わからない"
+  という状態をnilで表現する
+endnote
+
+class Car {
+  id
+  name
+  slug
+  height
+  width
+  length
+  luggage_size
+  zero_to_hundred
+  max_speed
+  max_torque
+  fuel_consumption
+}
+
+class City {
+  id
+  name
+  population
+  population_density
+  unemployment_rate
+  is_has_pulic_medical
+  alary
+  one_room_rent
+  temperature
+  humidity
+  is_has_rever
+  is_has_mountain
+}
+
+@enduml

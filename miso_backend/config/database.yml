@@ -24,7 +24,7 @@ default: &default
 
 development:
   <<: *default
-  database: app_development
+  database: miso_development
   username: root
   password: password
 
@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: app_test
+  database: miso_test
   username: root
   password: password
 
@@ -86,6 +86,6 @@ test:
 #
 production:
   <<: *default
-  database: app_production
+  database: miso_production
   username: app
   password: <%= ENV["APP_DATABASE_PASSWORD"] %>

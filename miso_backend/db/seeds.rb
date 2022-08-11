@@ -16,6 +16,14 @@ CSV.foreach(Rails.root.join("db", "data", "cell_phone.csv"), headers: true) do |
   cellphone = CellPhone.new(row.to_hash.merge(score: (90..100).to_a.sample))
   cellphone.save!
 end
+CSV.foreach(Rails.root.join("db", "data", "cell_phone_image.csv"), headers: true) do |row|
+  image = Image.new(
+    sequence: row["sequence"],
+    url: row["url"],
+    owner: CellPhone.find_by_slug(row["slug"])
+  )
+  image.save
+end
 
 dummy_cellphones = []
 95.times do |i|
@@ -46,6 +54,15 @@ CSV.foreach(Rails.root.join("db", "data", "car.csv"), headers: true) do |row|
   car = Car.new(row.to_hash.merge(score: (90..100).to_a.sample))
   car.save!
 end
+CSV.foreach(Rails.root.join("db", "data", "car_image.csv"), headers: true) do |row|
+  image = Image.new(
+    sequence: row["sequence"],
+    url: row["url"],
+    owner: Car.find_by_slug(row["slug"])
+  )
+  image.save
+end
+
 dummy_cars = []
 95.times do |i|
   name = FFaker::Name.first_name

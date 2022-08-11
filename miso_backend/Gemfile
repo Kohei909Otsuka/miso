@@ -33,6 +33,11 @@ gem "bootsnap", require: false
 # https://github.com/ffaker/ffaker
 gem "ffaker"
 
+# graphql module
+gem 'graphql'
+gem 'graphiql-rails'
+gem 'graphql-batch'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

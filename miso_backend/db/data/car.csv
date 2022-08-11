@@ -1,0 +1,6 @@
+name,slug,height,width,length,luggage_size,zero_to_hundred,max_speed,max_torque,fuel_consumption
+Tesla Model S (2020),tesla-model-s-2020,1450,1800,4980,792,2.9,249,750,37.8
+Porsche 918 Spyder (2015),porche-918-spyder-2015,1170,1790,4650,300,3.8,300,540,5
+Toyota GR Supra 3.0 (2023),toyota-gr-supra-3.0,1290,1850,4380,320,4.3,250,500,10
+Nissan Z Sport (2023),nissan-z-sport-2023,1320,1840,4380,198.22,4.5,250,300,17.5
+Lamborghini Urus (2019),lamborghini-urus-2019,1640,2180,5110,616,3.6,290,850,6

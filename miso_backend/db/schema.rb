@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_10_090936) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_10_093047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cars", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
+    t.integer "score", default: 0, null: false
     t.decimal "height", precision: 10, scale: 2
     t.decimal "width", precision: 10, scale: 2
     t.decimal "length", precision: 10, scale: 2
@@ -27,11 +28,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_090936) do
     t.decimal "fuel_consumption", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_cars_on_slug", unique: true
   end
 
   create_table "cell_phones", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
+    t.integer "score", default: 0, null: false
     t.decimal "weight"
     t.decimal "thickness", precision: 10, scale: 2
     t.decimal "width", precision: 10, scale: 2
@@ -45,11 +48,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_090936) do
     t.boolean "is_multi_sim"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_cell_phones_on_slug", unique: true
   end
 
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.string "slug", null: false
+    t.integer "score", default: 0, null: false
     t.integer "population"
     t.integer "population_density"
     t.decimal "unemployment_rate", precision: 10, scale: 2
@@ -62,6 +67,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_10_090936) do
     t.integer "is_has_mountain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_cities_on_slug", unique: true
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "owner_type", null: false
+    t.bigint "owner_id", null: false
+    t.integer "sequence", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_images_on_owner"
   end
 
 end

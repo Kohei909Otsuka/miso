@@ -2,7 +2,8 @@ class CreateCar < ActiveRecord::Migration[7.0]
   def change
     create_table :cars do |t|
       t.string :name, null: false
-      t.string :slug, null: false
+      t.string :slug, null: false, index: {unique: true}
+      t.integer :score, null: false, default: 0
 
       t.decimal :height , precision: 10, scale: 2 # cm
       t.decimal :width , precision: 10, scale: 2 # cm

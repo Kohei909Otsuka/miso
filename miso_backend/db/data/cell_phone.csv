@@ -1,0 +1,6 @@
+name,slug,weight,thickness,width,height,screen_size,screen_kind,refresh_rate,cpu,memory,disk,is_multi_sim
+Iphone13,iphone-13,174,7.6,71.5,146.7,6.1,el,60,Apple A15 Bionic,4,512,0
+Xiaomi 12S Ultra,xiomi-12s-ultra,225,9.1,75,163.2,673,ips,120,Qualcomm Snapdragon 8 Plus Gen 1,12,512,1
+Samsung Galaxy S22 Ultra,samsung_galaxy-s22-ultra,228,8.9,77.9,163.3,6.8,el,120,Samsung Exynos 220,12,1000,1
+Xiaomi Mi 11 Pro,xiaomi-mi-11-pro,208,8.5,74.6,164.3,6.81,el,120,Qualcomm Snapdragon 888,12,256,0
+Google Pixel 6,google-pixcel-6,207,8.9,74.8,158.6,6.4,el,90,Google Tensor,8,265,1

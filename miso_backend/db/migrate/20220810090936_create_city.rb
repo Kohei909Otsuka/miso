@@ -2,7 +2,8 @@ class CreateCity < ActiveRecord::Migration[7.0]
   def change
     create_table :cities do |t|
       t.string :name, null: false
-      t.string :slug, null: false
+      t.string :slug, null: false, index: {unique: true}
+      t.integer :score, null: false, default: 0
 
 			t.integer :population # 人
 			t.integer :population_density # 人/km

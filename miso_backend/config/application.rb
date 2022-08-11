@@ -23,5 +23,11 @@ module App
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    if Rails.env == "development"
+      # NOTE: docker-composeでnextjsから"backend"で名前解決するため
+      # https://www.orzs.tech/solve-blocked-host-of-rails/
+      config.hosts << "backend"
+    end
   end
 end

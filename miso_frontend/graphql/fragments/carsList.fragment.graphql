@@ -1,0 +1,7 @@
+fragment CarListField on Car {
+  id
+  name
+  slug
+  score
+  imageUrl
+}

@@ -1,26 +1,11 @@
 import React, { useState } from "react"
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 
 import FilterNumber from "components/FilterNumber"
-// - 寸法
-//     t.decimal "height", precision: 10, scale: 2
-//     t.decimal "width", precision: 10, scale: 2
-//     t.decimal "length", precision: 10, scale: 2
-//     t.integer "luggage_size"
-// - エンジン
-//     t.decimal "zero_to_hundred", precision: 10, scale: 2
-//     t.integer "max_speed"
-//     t.integer "max_torque"
-    // t.decimal "fuel_consumption", precision: 10, scale: 2
+import FilterListItem from "components/FilterListItem"
 
 type CardFilterProps = {
   heightMin: number
@@ -87,7 +72,6 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
     setOpenConfig({...openConfig, [k]: !openConfig[k]})
   }
 
-
   return (
     <div>
       <List
@@ -96,30 +80,75 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
           <ListItemText primary="寸法" />
         </ListItemButton>
         <List component="div" sx={{ pl: 2 }}>
-          <ListItemButton onClick={() => toggleOpen("height")}>
-            <ListItemText primary="高さ" primaryTypographyProps={{variant: "body2"}} />
-            {openConfig.height ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={openConfig.height} timeout="auto" unmountOnExit>
-            <Box sx={{pl: 3, pr: 3}}>
-              <FilterNumber min={heightMin} max={heightMax} unit="mm"/>
-            </Box>
-          </Collapse>
+          <FilterListItem
+            label="高さ"
+            open={openConfig.height}
+            handleToggle={() => toggleOpen("height")}
+          >
+            <FilterNumber min={heightMin} max={heightMax} unit="mm"/>
+          </FilterListItem>
 
-          <ListItemButton onClick={() => toggleOpen("width")}>
-            <ListItemText primary="幅" primaryTypographyProps={{variant: "body2"}} />
-            {openConfig.width ? <ExpandLess /> : <ExpandMore />}
-          </ListItemButton>
-          <Collapse in={openConfig.width} timeout="auto" unmountOnExit>
-            <Box sx={{pl: 3, pr: 3}}>
-              <FilterNumber min={widthMin} max={widthMax} unit="mm"/>
-            </Box>
-          </Collapse>
+          <FilterListItem
+            label="幅"
+            open={openConfig.width}
+            handleToggle={() => toggleOpen("width")}
+          >
+            <FilterNumber min={widthMin} max={widthMax} unit="mm"/>
+          </FilterListItem>
+
+          <FilterListItem
+            label="長さ"
+            open={openConfig.length}
+            handleToggle={() => toggleOpen("length")}
+          >
+            <FilterNumber min={lengthMin} max={lengthMax} unit="mm"/>
+          </FilterListItem>
+
+          <FilterListItem
+            label="積載量"
+            open={openConfig.luggageSize}
+            handleToggle={() => toggleOpen("luggageSize")}
+          >
+            <FilterNumber min={luggageSizeMin} max={luggageSizeMax} unit="L"/>
+          </FilterListItem>
         </List>
 
         <ListItemButton>
           <ListItemText primary="エンジン" />
         </ListItemButton>
+        <List component="div" sx={{ pl: 2 }}>
+          <FilterListItem
+            label="0-100km/h加速"
+            open={openConfig.zeroToHundred}
+            handleToggle={() => toggleOpen("zeroToHundred")}
+          >
+            <FilterNumber min={zeroToHundredMin} max={zeroToHundredMax} unit="s"/>
+          </FilterListItem>
+
+          <FilterListItem
+            label="最高速度"
+            open={openConfig.maxSpeed}
+            handleToggle={() => toggleOpen("maxSpeed")}
+          >
+            <FilterNumber min={maxSpeedMin} max={maxSpeedMax} unit="km/h"/>
+          </FilterListItem>
+
+          <FilterListItem
+            label="最大トルク"
+            open={openConfig.maxTorque}
+            handleToggle={() => toggleOpen("maxTorque")}
+          >
+            <FilterNumber min={maxTorqueMin} max={maxTorqueMax} unit="Nm"/>
+          </FilterListItem>
+
+          <FilterListItem
+            label="燃費"
+            open={openConfig.fuelConsumption}
+            handleToggle={() => toggleOpen("fuelConsumption")}
+          >
+            <FilterNumber min={fuelConsumptionMin} max={fuelConsumptionMax} unit="km/L"/>
+          </FilterListItem>
+        </List>
       </List>
     </div>
   )

@@ -16,5 +16,9 @@ module Types
     field :disk, Int, null: true
     field :is_multi_sim, Boolean, null: true
     field :image_url, String, null: true
+
+    def image_url
+      object.images.first&.url
+    end
   end
 end

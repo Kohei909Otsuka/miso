@@ -41,6 +41,7 @@ module Resolvers
         screen_kinds: args[:screen_kinds],
         is_multi_sim: args[:is_multi_sim],
       })
+      f.filter
     end
   end
 end

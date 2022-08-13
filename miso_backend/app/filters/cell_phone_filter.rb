@@ -114,5 +114,7 @@ class CellPhoneFilter
     if !is_multi_sim.nil?
       cell_phones = cell_phones.where(is_multi_sim: is_multi_sim)
     end
+
+    return cell_phones
   end
 end

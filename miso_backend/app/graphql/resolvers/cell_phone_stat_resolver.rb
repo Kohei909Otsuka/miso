@@ -20,7 +20,7 @@ module Resolvers
         MIN(memory) as memory_min,
         MAX(memory) as memory_max,
         MIN(disk) as disk_min,
-        MAX(disk) as disk_max,
+        MAX(disk) as disk_max
       FROM cell_phones
       ;
       SQL

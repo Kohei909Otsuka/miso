@@ -93,6 +93,26 @@ export type QueryCarArgs = {
 };
 
 
+export type QueryCarsArgs = {
+  fuelConsumptionMax?: InputMaybe<Scalars['Float']>;
+  fuelConsumptionMin?: InputMaybe<Scalars['Float']>;
+  heightMax?: InputMaybe<Scalars['Float']>;
+  heightMin?: InputMaybe<Scalars['Float']>;
+  lengthMax?: InputMaybe<Scalars['Float']>;
+  lengthMin?: InputMaybe<Scalars['Float']>;
+  luggageSizeMax?: InputMaybe<Scalars['Int']>;
+  luggageSizeMin?: InputMaybe<Scalars['Int']>;
+  maxSpeedMax?: InputMaybe<Scalars['Int']>;
+  maxSpeedMin?: InputMaybe<Scalars['Int']>;
+  maxTorqueMax?: InputMaybe<Scalars['Int']>;
+  maxTorqueMin?: InputMaybe<Scalars['Int']>;
+  widthMax?: InputMaybe<Scalars['Float']>;
+  widthMin?: InputMaybe<Scalars['Float']>;
+  zeroToHundredMax?: InputMaybe<Scalars['Float']>;
+  zeroToHundredMin?: InputMaybe<Scalars['Float']>;
+};
+
+
 export type QueryCellPhoneArgs = {
   id: Scalars['ID'];
 };

@@ -43,10 +43,55 @@ const CarsPage: NextPage<CarsPageProps> = (props) => {
   )
 }
 
+function queryToParams(context: any) {
+  const heightMin = context.query.heightMin ? Number(context.query.heightMin) : null
+  const heightMax = context.query.heightMax ? Number(context.query.heightMax) : null
+
+  const widthMin = context.query.widthMin ? Number(context.query.widthMin) : null
+  const widthMax = context.query.widthMax ? Number(context.query.widthMax) : null
+
+  const lengthMin = context.query.lengthMin ? Number(context.query.lengthMin) : null
+  const lengthMax = context.query.lengthMax ? Number(context.query.lengthMax) : null
+
+  const luggageSizeMin = context.query.luggageSizeMin ? Number(context.query.luggageSizeMin) : null
+  const luggageSizeMax = context.query.luggageSizeMax ? Number(context.query.luggageSizeMax) : null
+
+  const zeroToHundredMin = context.query.zeroToHundredMin ? Number(context.query.zeroToHundredMin) : null
+  const zeroToHundredMax = context.query.zeroToHundredMax ? Number(context.query.zeroToHundredMax) : null
+
+  const maxSpeedMin = context.query.maxSpeedMin ? Number(context.query.maxSpeedMin) : null
+  const maxSpeedMax = context.query.maxSpeedMax ? Number(context.query.maxSpeedMax) : null
+
+  const maxTorqueMin = context.query.maxTorqueMin ? Number(context.query.maxTorqueMin) : null
+  const maxTorqueMax = context.query.maxTorqueMax ? Number(context.query.maxTorqueMax) : null
+
+  const fuelConsumptionMin = context.query.fuelConsumptionMin ? Number(context.query.fuelConsumptionMin) : null
+  const fuelConsumptionMax = context.query.fuelConsumptionMax ? Number(context.query.fuelConsumptionMax) : null
+
+
+  return {
+    heightMin,
+    heightMax,
+    widthMin,
+    widthMax,
+    luggageSizeMin,
+    luggageSizeMax,
+    zeroToHundredMin,
+    zeroToHundredMax,
+    maxSpeedMin,
+    maxSpeedMax,
+    maxTorqueMin,
+    maxTorqueMax,
+    fuelConsumptionMin,
+    fuelConsumptionMax,
+  }
+}
+
 export async function getServerSideProps(context: any) {
   const client = buildSSRGrahpqlClient(context);
   const sdk = getSdk(client);
-  const { cars, carStat} = await sdk.Cars({})
+  const params = queryToParams(context)
+  const { cars, carStat} = await sdk.Cars(params)
   return {
     props: {
       cars,

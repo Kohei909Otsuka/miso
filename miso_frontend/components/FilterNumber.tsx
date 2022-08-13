@@ -7,6 +7,7 @@ type FilterNumberProps = {
   min: number
   max: number
   unit: string | null
+  onChange: (min: number, max: number) => void
 }
 
 // https://mui.com/material-ui/react-slider/#range-slider
@@ -15,12 +16,15 @@ const FilterNumber: React.FC<FilterNumberProps> = (props) => {
     min,
     max,
     unit,
+    onChange
   } = props
 
   const [value, setValue] = useState<number[]>([min, max])
 
   const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
+    const newValues = newValue as number[]
+    setValue(newValues);
+    onChange(newValues[0], newValues[1])
   };
 
   const valuetext = (value: number) => {

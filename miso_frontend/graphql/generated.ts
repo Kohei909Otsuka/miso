@@ -121,7 +121,24 @@ export type CarStatFieldFragment = { __typename?: 'CarStat', widthMin: number, w
 
 export type CarListFieldFragment = { __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null };
 
-export type CarsQueryVariables = Exact<{ [key: string]: never; }>;
+export type CarsQueryVariables = Exact<{
+  heightMin?: InputMaybe<Scalars['Float']>;
+  heightMax?: InputMaybe<Scalars['Float']>;
+  widthMin?: InputMaybe<Scalars['Float']>;
+  widthMax?: InputMaybe<Scalars['Float']>;
+  lengthMin?: InputMaybe<Scalars['Float']>;
+  lengthMax?: InputMaybe<Scalars['Float']>;
+  luggageSizeMin?: InputMaybe<Scalars['Int']>;
+  luggageSizeMax?: InputMaybe<Scalars['Int']>;
+  zeroToHundredMin?: InputMaybe<Scalars['Float']>;
+  zeroToHundredMax?: InputMaybe<Scalars['Float']>;
+  maxSpeedMin?: InputMaybe<Scalars['Int']>;
+  maxSpeedMax?: InputMaybe<Scalars['Int']>;
+  maxTorqueMin?: InputMaybe<Scalars['Int']>;
+  maxTorqueMax?: InputMaybe<Scalars['Int']>;
+  fuelConsumptionMin?: InputMaybe<Scalars['Float']>;
+  fuelConsumptionMax?: InputMaybe<Scalars['Float']>;
+}>;
 
 
 export type CarsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null }>, carStat: { __typename?: 'CarStat', widthMin: number, widthMax: number, heightMin: number, heightMax: number, lengthMin: number, lengthMax: number, luggageSizeMin: number, luggageSizeMax: number, zeroToHundredMin: number, zeroToHundredMax: number, maxSpeedMin: number, maxSpeedMax: number, maxTorqueMin: number, maxTorqueMax: number, fuelConsumptionMin: number, fuelConsumptionMax: number } };
@@ -156,8 +173,25 @@ export const CarListFieldFragmentDoc = gql`
 }
     `;
 export const CarsDocument = gql`
-    query Cars {
-  cars {
+    query Cars($heightMin: Float, $heightMax: Float, $widthMin: Float, $widthMax: Float, $lengthMin: Float, $lengthMax: Float, $luggageSizeMin: Int, $luggageSizeMax: Int, $zeroToHundredMin: Float, $zeroToHundredMax: Float, $maxSpeedMin: Int, $maxSpeedMax: Int, $maxTorqueMin: Int, $maxTorqueMax: Int, $fuelConsumptionMin: Float, $fuelConsumptionMax: Float) {
+  cars(
+    heightMin: $heightMin
+    heightMax: $heightMax
+    widthMin: $widthMin
+    widthMax: $widthMax
+    lengthMin: $lengthMin
+    lengthMax: $lengthMax
+    luggageSizeMin: $luggageSizeMin
+    luggageSizeMax: $luggageSizeMax
+    zeroToHundredMin: $zeroToHundredMin
+    zeroToHundredMax: $zeroToHundredMax
+    maxSpeedMin: $maxSpeedMin
+    maxSpeedMax: $maxSpeedMax
+    maxTorqueMin: $maxTorqueMin
+    maxTorqueMax: $maxTorqueMax
+    fuelConsumptionMin: $fuelConsumptionMin
+    fuelConsumptionMax: $fuelConsumptionMax
+  ) {
     ...CarListField
   }
   carStat {

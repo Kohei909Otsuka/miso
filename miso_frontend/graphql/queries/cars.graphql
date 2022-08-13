@@ -1,5 +1,39 @@
-query Cars {
-  cars {
+query Cars(
+  $heightMin: Float,
+  $heightMax: Float,
+  $widthMin: Float,
+  $widthMax: Float,
+  $lengthMin: Float,
+  $lengthMax: Float,
+  $luggageSizeMin: Int,
+  $luggageSizeMax: Int,
+  $zeroToHundredMin: Float,
+  $zeroToHundredMax: Float,
+  $maxSpeedMin: Int,
+  $maxSpeedMax: Int,
+  $maxTorqueMin: Int,
+  $maxTorqueMax: Int,
+  $fuelConsumptionMin: Float,
+  $fuelConsumptionMax: Float
+){
+  cars(
+    heightMin: $heightMin,
+    heightMax: $heightMax,
+    widthMin: $widthMin,
+    widthMax: $widthMax,
+    lengthMin: $lengthMin,
+    lengthMax: $lengthMax,
+    luggageSizeMin: $luggageSizeMin,
+    luggageSizeMax: $luggageSizeMax,
+    zeroToHundredMin: $zeroToHundredMin,
+    zeroToHundredMax: $zeroToHundredMax,
+    maxSpeedMin: $maxSpeedMin,
+    maxSpeedMax: $maxSpeedMax,
+    maxTorqueMin: $maxTorqueMin,
+    maxTorqueMax: $maxTorqueMax,
+    fuelConsumptionMin: $fuelConsumptionMin,
+    fuelConsumptionMax: $fuelConsumptionMax
+  ) {
     ...CarListField
   }
   carStat {

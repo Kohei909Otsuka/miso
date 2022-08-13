@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import { useRouter } from "next/router";
+
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -38,6 +40,8 @@ type OpenConfig = {
 }
 
 const CardFilter: React.FC<CardFilterProps> = (props) => {
+  const router = useRouter()
+
   const {
     heightMin,
     heightMax,
@@ -72,6 +76,15 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
     setOpenConfig({...openConfig, [k]: !openConfig[k]})
   }
 
+  const genOnChangeNumber = (minKey: string, maxKey: string) => {
+    return (min: number, max: number) => {
+      router.push({
+        pathname: router.pathname,
+        query: {...router.query, [minKey]: min, [maxKey]: max},
+      })
+    }
+  }
+
   return (
     <div style={{position: "sticky", top: 0}}>
       <List
@@ -85,7 +98,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.height}
             handleToggle={() => toggleOpen("height")}
           >
-            <FilterNumber min={heightMin} max={heightMax} unit="mm"/>
+            <FilterNumber
+              min={heightMin}
+              max={heightMax}
+              unit="mm"
+              onChange={genOnChangeNumber("heightMin", "heightMax")}
+            />
           </FilterListItem>
 
           <FilterListItem
@@ -93,7 +111,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.width}
             handleToggle={() => toggleOpen("width")}
           >
-            <FilterNumber min={widthMin} max={widthMax} unit="mm"/>
+            <FilterNumber
+              min={widthMin}
+              max={widthMax}
+              unit="mm"
+              onChange={genOnChangeNumber("widthMin", "widthMax")}
+            />
           </FilterListItem>
 
           <FilterListItem
@@ -101,7 +124,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.length}
             handleToggle={() => toggleOpen("length")}
           >
-            <FilterNumber min={lengthMin} max={lengthMax} unit="mm"/>
+            <FilterNumber
+              min={lengthMin}
+              max={lengthMax}
+              unit="mm"
+              onChange={genOnChangeNumber("lengthMin", "lengthMax")}
+            />
           </FilterListItem>
 
           <FilterListItem
@@ -109,7 +137,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.luggageSize}
             handleToggle={() => toggleOpen("luggageSize")}
           >
-            <FilterNumber min={luggageSizeMin} max={luggageSizeMax} unit="L"/>
+            <FilterNumber
+              min={luggageSizeMin}
+              max={luggageSizeMax}
+              unit="L"
+              onChange={genOnChangeNumber("luggageSizeMin", "luggageSizeMax")}
+            />
           </FilterListItem>
         </List>
 
@@ -122,7 +155,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.zeroToHundred}
             handleToggle={() => toggleOpen("zeroToHundred")}
           >
-            <FilterNumber min={zeroToHundredMin} max={zeroToHundredMax} unit="s"/>
+            <FilterNumber
+              min={zeroToHundredMin}
+              max={zeroToHundredMax}
+              unit="s"
+              onChange={genOnChangeNumber("zeroToHundredMin", "zeroToHundredMax")}
+            />
           </FilterListItem>
 
           <FilterListItem
@@ -130,7 +168,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.maxSpeed}
             handleToggle={() => toggleOpen("maxSpeed")}
           >
-            <FilterNumber min={maxSpeedMin} max={maxSpeedMax} unit="km/h"/>
+            <FilterNumber
+              min={maxSpeedMin}
+              max={maxSpeedMax}
+              unit="km/h"
+              onChange={genOnChangeNumber("maxSpeedMin", "maxSpeedMax")}
+            />
           </FilterListItem>
 
           <FilterListItem
@@ -138,7 +181,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.maxTorque}
             handleToggle={() => toggleOpen("maxTorque")}
           >
-            <FilterNumber min={maxTorqueMin} max={maxTorqueMax} unit="Nm"/>
+            <FilterNumber
+              min={maxTorqueMin}
+              max={maxTorqueMax}
+              unit="Nm"
+              onChange={genOnChangeNumber("maxTorqueMin", "maxTorqueMax")}
+            />
           </FilterListItem>
 
           <FilterListItem
@@ -146,7 +194,12 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.fuelConsumption}
             handleToggle={() => toggleOpen("fuelConsumption")}
           >
-            <FilterNumber min={fuelConsumptionMin} max={fuelConsumptionMax} unit="km/L"/>
+            <FilterNumber
+              min={fuelConsumptionMin}
+              max={fuelConsumptionMax}
+              unit="km/L"
+              onChange={genOnChangeNumber("fuelConsumptionMin", "fuelConsumptionMax")}
+            />
           </FilterListItem>
         </List>
       </List>

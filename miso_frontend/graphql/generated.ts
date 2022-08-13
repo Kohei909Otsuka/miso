@@ -32,6 +32,26 @@ export type Car = {
   zeroToHundred?: Maybe<Scalars['Float']>;
 };
 
+export type CarStat = {
+  __typename?: 'CarStat';
+  fuelConsumptionMax: Scalars['Float'];
+  fuelConsumptionMin: Scalars['Float'];
+  heightMax: Scalars['Float'];
+  heightMin: Scalars['Float'];
+  lengthMax: Scalars['Float'];
+  lengthMin: Scalars['Float'];
+  luggageSizeMax: Scalars['Int'];
+  luggageSizeMin: Scalars['Int'];
+  maxSpeedMax: Scalars['Int'];
+  maxSpeedMin: Scalars['Int'];
+  maxTorqueMax: Scalars['Int'];
+  maxTorqueMin: Scalars['Int'];
+  widthMax: Scalars['Float'];
+  widthMin: Scalars['Float'];
+  zeroToHundredMax: Scalars['Float'];
+  zeroToHundredMin: Scalars['Float'];
+};
+
 export type CellPhone = {
   __typename?: 'CellPhone';
   cpu?: Maybe<Scalars['String']>;
@@ -61,6 +81,7 @@ export type Mutation = {
 export type Query = {
   __typename?: 'Query';
   car: Car;
+  carStat: CarStat;
   cars: Array<Car>;
   cellPhone: CellPhone;
   cellPhones: Array<CellPhone>;
@@ -76,13 +97,35 @@ export type QueryCellPhoneArgs = {
   id: Scalars['ID'];
 };
 
+export type CarStatFieldFragment = { __typename?: 'CarStat', widthMin: number, widthMax: number, heightMin: number, heightMax: number, lengthMin: number, lengthMax: number, luggageSizeMin: number, luggageSizeMax: number, zeroToHundredMin: number, zeroToHundredMax: number, maxSpeedMin: number, maxSpeedMax: number, maxTorqueMin: number, maxTorqueMax: number, fuelConsumptionMin: number, fuelConsumptionMax: number };
+
 export type CarListFieldFragment = { __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null };
 
 export type CarsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CarsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null }> };
+export type CarsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null }>, carStat: { __typename?: 'CarStat', widthMin: number, widthMax: number, heightMin: number, heightMax: number, lengthMin: number, lengthMax: number, luggageSizeMin: number, luggageSizeMax: number, zeroToHundredMin: number, zeroToHundredMax: number, maxSpeedMin: number, maxSpeedMax: number, maxTorqueMin: number, maxTorqueMax: number, fuelConsumptionMin: number, fuelConsumptionMax: number } };
 
+export const CarStatFieldFragmentDoc = gql`
+    fragment CarStatField on CarStat {
+  widthMin
+  widthMax
+  heightMin
+  heightMax
+  lengthMin
+  lengthMax
+  luggageSizeMin
+  luggageSizeMax
+  zeroToHundredMin
+  zeroToHundredMax
+  maxSpeedMin
+  maxSpeedMax
+  maxTorqueMin
+  maxTorqueMax
+  fuelConsumptionMin
+  fuelConsumptionMax
+}
+    `;
 export const CarListFieldFragmentDoc = gql`
     fragment CarListField on Car {
   id
@@ -97,8 +140,12 @@ export const CarsDocument = gql`
   cars {
     ...CarListField
   }
+  carStat {
+    ...CarStatField
+  }
 }
-    ${CarListFieldFragmentDoc}`;
+    ${CarListFieldFragmentDoc}
+${CarStatFieldFragmentDoc}`;
 
 export function useCarsQuery(options?: Omit<Urql.UseQueryArgs<CarsQueryVariables>, 'query'>) {
   return Urql.useQuery<CarsQuery, CarsQueryVariables>({ query: CarsDocument, ...options });

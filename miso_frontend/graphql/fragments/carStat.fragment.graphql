@@ -1,0 +1,18 @@
+fragment CarStatField on CarStat {
+  widthMin
+  widthMax
+  heightMin
+  heightMax
+  lengthMin
+  lengthMax
+  luggageSizeMin
+  luggageSizeMax
+  zeroToHundredMin
+  zeroToHundredMax
+  maxSpeedMin
+  maxSpeedMax
+  maxTorqueMin
+  maxTorqueMax
+  fuelConsumptionMin
+  fuelConsumptionMax
+}

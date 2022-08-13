@@ -62,7 +62,7 @@ class CellPhoneFilter
       cell_phones = cell_phones.where("cell_phones.thickness >= ?", width_min)
     end
     if thickness_max.present?
-      cell_phones = cell_phones.where("cell_phones.thickness_max <= ?", width_max)
+      cell_phones = cell_phones.where("cell_phones.thickness <= ?", width_max)
     end
 
     if width_min.present?

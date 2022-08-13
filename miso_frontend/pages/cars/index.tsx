@@ -98,7 +98,7 @@ export async function getServerSideProps(context: any) {
     props: {
       cars,
       carStat,
-      params
+      params,
     },
   }
 }

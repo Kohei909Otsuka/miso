@@ -35,14 +35,14 @@ type CardFilterProps = {
 }
 
 type OpenConfig = {
-    height: boolean
-    width: boolean
-    length: boolean
-    luggageSize: boolean
-    zeroToHundred: boolean
-    maxSpeed: boolean
-    maxTorque: boolean
-    fuelConsumption: boolean
+  height: boolean
+  width: boolean
+  length: boolean
+  luggageSize: boolean
+  zeroToHundred: boolean
+  maxSpeed: boolean
+  maxTorque: boolean
+  fuelConsumption: boolean
 }
 
 const CardFilter: React.FC<CardFilterProps> = (props) => {

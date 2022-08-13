@@ -72,6 +72,26 @@ export type CellPhone = {
   width?: Maybe<Scalars['Float']>;
 };
 
+export type CellPhoneStat = {
+  __typename?: 'CellPhoneStat';
+  diskMax: Scalars['Int'];
+  diskMin: Scalars['Int'];
+  heightMax: Scalars['Float'];
+  heightMin: Scalars['Float'];
+  memoryMax: Scalars['Int'];
+  memoryMin: Scalars['Int'];
+  refreshRateMax: Scalars['Int'];
+  refreshRateMin: Scalars['Int'];
+  screenSizeMax: Scalars['Float'];
+  screenSizeMin: Scalars['Float'];
+  thicknessMax: Scalars['Float'];
+  thicknessMin: Scalars['Float'];
+  weightMax: Scalars['Float'];
+  weightMin: Scalars['Float'];
+  widthMax: Scalars['Float'];
+  widthMin: Scalars['Float'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** An example field added by the generator */
@@ -84,6 +104,7 @@ export type Query = {
   carStat: CarStat;
   cars: Array<Car>;
   cellPhone: CellPhone;
+  cellPhoneStat: CellPhoneStat;
   cellPhones: Array<CellPhone>;
 };
 
@@ -117,9 +138,35 @@ export type QueryCellPhoneArgs = {
   id: Scalars['ID'];
 };
 
+
+export type QueryCellPhonesArgs = {
+  diskMax?: InputMaybe<Scalars['Int']>;
+  diskMin?: InputMaybe<Scalars['Int']>;
+  heightMax?: InputMaybe<Scalars['Float']>;
+  heightMin?: InputMaybe<Scalars['Float']>;
+  isMultiSim?: InputMaybe<Scalars['Boolean']>;
+  memoryMax?: InputMaybe<Scalars['Int']>;
+  memoryMin?: InputMaybe<Scalars['Int']>;
+  refreshRateMax?: InputMaybe<Scalars['Int']>;
+  refreshRateMin?: InputMaybe<Scalars['Int']>;
+  screenKinds?: InputMaybe<Array<Scalars['String']>>;
+  screenSizeMax?: InputMaybe<Scalars['Float']>;
+  screenSizeMin?: InputMaybe<Scalars['Float']>;
+  thicknessMax?: InputMaybe<Scalars['Float']>;
+  thicknessMin?: InputMaybe<Scalars['Float']>;
+  weightMax?: InputMaybe<Scalars['Float']>;
+  weightMin?: InputMaybe<Scalars['Float']>;
+  widthMax?: InputMaybe<Scalars['Float']>;
+  widthMin?: InputMaybe<Scalars['Float']>;
+};
+
 export type CarStatFieldFragment = { __typename?: 'CarStat', widthMin: number, widthMax: number, heightMin: number, heightMax: number, lengthMin: number, lengthMax: number, luggageSizeMin: number, luggageSizeMax: number, zeroToHundredMin: number, zeroToHundredMax: number, maxSpeedMin: number, maxSpeedMax: number, maxTorqueMin: number, maxTorqueMax: number, fuelConsumptionMin: number, fuelConsumptionMax: number };
 
 export type CarListFieldFragment = { __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null };
+
+export type CellPhoneStatFieldFragment = { __typename?: 'CellPhoneStat', weightMin: number, weightMax: number, thicknessMin: number, thicknessMax: number, widthMin: number, widthMax: number, heightMin: number, heightMax: number, screenSizeMin: number, screenSizeMax: number, refreshRateMin: number, refreshRateMax: number, memoryMin: number, memoryMax: number, diskMin: number, diskMax: number };
+
+export type CellPhoneListFieldFragment = { __typename?: 'CellPhone', id: string, name: string, slug: string, score: number, imageUrl?: string | null };
 
 export type CarsQueryVariables = Exact<{
   heightMin?: InputMaybe<Scalars['Float']>;
@@ -143,6 +190,30 @@ export type CarsQueryVariables = Exact<{
 
 export type CarsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null }>, carStat: { __typename?: 'CarStat', widthMin: number, widthMax: number, heightMin: number, heightMax: number, lengthMin: number, lengthMax: number, luggageSizeMin: number, luggageSizeMax: number, zeroToHundredMin: number, zeroToHundredMax: number, maxSpeedMin: number, maxSpeedMax: number, maxTorqueMin: number, maxTorqueMax: number, fuelConsumptionMin: number, fuelConsumptionMax: number } };
 
+export type CellPhonesQueryVariables = Exact<{
+  weightMin?: InputMaybe<Scalars['Float']>;
+  weightMax?: InputMaybe<Scalars['Float']>;
+  thicknessMin?: InputMaybe<Scalars['Float']>;
+  thicknessMax?: InputMaybe<Scalars['Float']>;
+  widthMin?: InputMaybe<Scalars['Float']>;
+  widthMax?: InputMaybe<Scalars['Float']>;
+  heightMin?: InputMaybe<Scalars['Float']>;
+  heightMax?: InputMaybe<Scalars['Float']>;
+  screenSizeMin?: InputMaybe<Scalars['Float']>;
+  screenSizeMax?: InputMaybe<Scalars['Float']>;
+  refreshRateMin?: InputMaybe<Scalars['Int']>;
+  refreshRateMax?: InputMaybe<Scalars['Int']>;
+  memoryMin?: InputMaybe<Scalars['Int']>;
+  memoryMax?: InputMaybe<Scalars['Int']>;
+  diskMin?: InputMaybe<Scalars['Int']>;
+  diskMax?: InputMaybe<Scalars['Int']>;
+  screenKinds?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  isMultiSim?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type CellPhonesQuery = { __typename?: 'Query', cellPhones: Array<{ __typename?: 'CellPhone', id: string, name: string, slug: string, score: number, imageUrl?: string | null }>, cellPhoneStat: { __typename?: 'CellPhoneStat', weightMin: number, weightMax: number, thicknessMin: number, thicknessMax: number, widthMin: number, widthMax: number, heightMin: number, heightMax: number, screenSizeMin: number, screenSizeMax: number, refreshRateMin: number, refreshRateMax: number, memoryMin: number, memoryMax: number, diskMin: number, diskMax: number } };
+
 export const CarStatFieldFragmentDoc = gql`
     fragment CarStatField on CarStat {
   widthMin
@@ -165,6 +236,35 @@ export const CarStatFieldFragmentDoc = gql`
     `;
 export const CarListFieldFragmentDoc = gql`
     fragment CarListField on Car {
+  id
+  name
+  slug
+  score
+  imageUrl
+}
+    `;
+export const CellPhoneStatFieldFragmentDoc = gql`
+    fragment CellPhoneStatField on CellPhoneStat {
+  weightMin
+  weightMax
+  thicknessMin
+  thicknessMax
+  widthMin
+  widthMax
+  heightMin
+  heightMax
+  screenSizeMin
+  screenSizeMax
+  refreshRateMin
+  refreshRateMax
+  memoryMin
+  memoryMax
+  diskMin
+  diskMax
+}
+    `;
+export const CellPhoneListFieldFragmentDoc = gql`
+    fragment CellPhoneListField on CellPhone {
   id
   name
   slug
@@ -200,6 +300,36 @@ export const CarsDocument = gql`
 }
     ${CarListFieldFragmentDoc}
 ${CarStatFieldFragmentDoc}`;
+export const CellPhonesDocument = gql`
+    query CellPhones($weightMin: Float, $weightMax: Float, $thicknessMin: Float, $thicknessMax: Float, $widthMin: Float, $widthMax: Float, $heightMin: Float, $heightMax: Float, $screenSizeMin: Float, $screenSizeMax: Float, $refreshRateMin: Int, $refreshRateMax: Int, $memoryMin: Int, $memoryMax: Int, $diskMin: Int, $diskMax: Int, $screenKinds: [String!], $isMultiSim: Boolean) {
+  cellPhones(
+    weightMin: $weightMin
+    weightMax: $weightMax
+    thicknessMin: $thicknessMin
+    thicknessMax: $thicknessMax
+    widthMin: $widthMin
+    widthMax: $widthMax
+    heightMin: $heightMin
+    heightMax: $heightMax
+    screenSizeMin: $screenSizeMin
+    screenSizeMax: $screenSizeMax
+    refreshRateMin: $refreshRateMin
+    refreshRateMax: $refreshRateMax
+    memoryMin: $memoryMin
+    memoryMax: $memoryMax
+    diskMin: $diskMin
+    diskMax: $diskMax
+    screenKinds: $screenKinds
+    isMultiSim: $isMultiSim
+  ) {
+    ...CellPhoneListField
+  }
+  cellPhoneStat {
+    ...CellPhoneStatField
+  }
+}
+    ${CellPhoneListFieldFragmentDoc}
+${CellPhoneStatFieldFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
 
@@ -210,6 +340,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     Cars(variables?: CarsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CarsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<CarsQuery>(CarsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Cars', 'query');
+    },
+    CellPhones(variables?: CellPhonesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CellPhonesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CellPhonesQuery>(CellPhonesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'CellPhones', 'query');
     }
   };
 }

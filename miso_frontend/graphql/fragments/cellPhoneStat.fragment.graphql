@@ -1,0 +1,18 @@
+fragment CellPhoneStatField on CellPhoneStat {
+    weightMin
+    weightMax
+    thicknessMin
+    thicknessMax
+    widthMin
+    widthMax
+    heightMin
+    heightMax
+    screenSizeMin
+    screenSizeMax
+    refreshRateMin
+    refreshRateMax
+    memoryMin
+    memoryMax
+    diskMin
+    diskMax
+}

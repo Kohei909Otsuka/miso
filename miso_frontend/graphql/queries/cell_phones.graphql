@@ -1,0 +1,46 @@
+query CellPhones(
+  $weightMin: Float,
+  $weightMax: Float,
+  $thicknessMin: Float,
+  $thicknessMax: Float,
+  $widthMin: Float,
+  $widthMax: Float,
+  $heightMin: Float,
+  $heightMax: Float,
+  $screenSizeMin: Float,
+  $screenSizeMax: Float,
+  $refreshRateMin: Int,
+  $refreshRateMax: Int,
+  $memoryMin: Int,
+  $memoryMax: Int,
+  $diskMin: Int,
+  $diskMax: Int,
+  $screenKinds: [String!],
+  $isMultiSim: Boolean
+) {
+  cellPhones(
+    weightMin: $weightMin,
+    weightMax: $weightMax,
+    thicknessMin: $thicknessMin,
+    thicknessMax: $thicknessMax,
+    widthMin: $widthMin,
+    widthMax: $widthMax,
+    heightMin: $heightMin,
+    heightMax: $heightMax,
+    screenSizeMin: $screenSizeMin,
+    screenSizeMax: $screenSizeMax,
+    refreshRateMin: $refreshRateMin,
+    refreshRateMax: $refreshRateMax,
+    memoryMin: $memoryMin,
+    memoryMax: $memoryMax,
+    diskMin: $diskMin,
+    diskMax: $diskMax,
+    screenKinds: $screenKinds,
+    isMultiSim: $isMultiSim
+  ) {
+    ...CellPhoneListField
+  }
+  cellPhoneStat {
+    ...CellPhoneStatField
+  }
+}

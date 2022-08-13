@@ -1,0 +1,7 @@
+fragment CellPhoneListField on CellPhone {
+  id
+  name
+  slug
+  score
+  imageUrl
+}

@@ -12,5 +12,6 @@ module Types
 
     field :cell_phone, resolver: Resolvers::CellPhoneResolver
     field :cell_phones, resolver: Resolvers::CellPhonesResolver
+    field :cell_phone_stat, resolver: Resolvers::CellPhoneStatResolver
   end
 end

@@ -73,7 +73,7 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
   }
 
   return (
-    <div>
+    <div style={{position: "sticky", top: 0}}>
       <List
       >
         <ListItemButton>

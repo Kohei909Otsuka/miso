@@ -25,7 +25,7 @@ const CarsPage: NextPage<CarsPageProps> = (props) => {
           <Grid2 xs={9}>
             <Grid2 container spacing={2}>
               {cars.map(car => (
-                <Grid2 xs={6} md={4}>
+                <Grid2 key={car.id} xs={6} md={4}>
                   <CarCard
                     key={car.id}
                     name={car.name}

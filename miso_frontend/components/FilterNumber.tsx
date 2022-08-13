@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 type FilterNumberProps = {
   min: number
   max: number
+  valueMin: number | null
+  valueMax: number | null
   unit: string | null
   onChange: (min: number, max: number) => void
 }
@@ -15,11 +17,13 @@ const FilterNumber: React.FC<FilterNumberProps> = (props) => {
   const {
     min,
     max,
+    valueMin,
+    valueMax,
     unit,
     onChange
   } = props
 
-  const [value, setValue] = useState<number[]>([min, max])
+  const [value, setValue] = useState<number[]>([valueMin ? valueMin : min, valueMax ? valueMax : max])
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     const newValues = newValue as number[]

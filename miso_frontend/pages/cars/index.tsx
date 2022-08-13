@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { getSdk } from "graphql/ssr.generated";
 import {CarListFieldFragment, CarStatFieldFragment} from "graphql/generated"
+import { CarFilterParams } from "components/CarFilter"
 import buildSSRGrahpqlClient from "src/ssrGraphqlClient";
 import Grid2 from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
@@ -11,16 +12,17 @@ import CarFilter from "components/CarFilter"
 type CarsPageProps = {
   cars: CarListFieldFragment[]
   carStat: CarStatFieldFragment
+  params: CarFilterParams
 }
 const CarsPage: NextPage<CarsPageProps> = (props) => {
-  const { cars, carStat} = props
+  const { cars, carStat, params} = props
   return (
     <div>
       <Container>
         <h1>cars</h1>
         <Grid2 container spacing={2}>
           <Grid2 xs={3}>
-            <CarFilter {...carStat} />
+            <CarFilter stat={carStat} params={params}/>
           </Grid2>
           <Grid2 xs={9}>
             <Grid2 container spacing={2}>
@@ -96,6 +98,7 @@ export async function getServerSideProps(context: any) {
     props: {
       cars,
       carStat,
+      params
     },
   }
 }

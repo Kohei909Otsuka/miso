@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useRouter } from "next/router";
+import {CarStatFieldFragment} from "graphql/generated"
 
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -9,23 +10,28 @@ import ListItemText from '@mui/material/ListItemText';
 import FilterNumber from "components/FilterNumber"
 import FilterListItem from "components/FilterListItem"
 
+export type CarFilterParams = {
+  heightMax: number | null;
+  heightMin: number | null;
+  widthMax: number | null;
+  widthMin: number | null;
+  lengthMax: number | null;
+  lengthMin: number | null;
+  zeroToHundredMax: number | null;
+  zeroToHundredMin: number | null;
+  luggageSizeMax: number | null;
+  luggageSizeMin: number | null;
+  maxSpeedMax: number | null;
+  maxSpeedMin: number | null;
+  maxTorqueMax: number | null;
+  maxTorqueMin: number | null;
+  fuelConsumptionMax: number | null;
+  fuelConsumptionMin: number | null;
+}
+
 type CardFilterProps = {
-  heightMin: number
-  heightMax: number
-  widthMin: number
-  widthMax: number
-  lengthMin: number
-  lengthMax: number
-  luggageSizeMin: number
-  luggageSizeMax: number
-  zeroToHundredMin: number
-  zeroToHundredMax: number
-  maxSpeedMin: number
-  maxSpeedMax: number
-  maxTorqueMin: number
-  maxTorqueMax: number
-  fuelConsumptionMin: number
-  fuelConsumptionMax: number
+  stat: CarStatFieldFragment
+  params: CarFilterParams
 }
 
 type OpenConfig = {
@@ -43,22 +49,8 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
   const router = useRouter()
 
   const {
-    heightMin,
-    heightMax,
-    widthMin,
-    widthMax,
-    lengthMin,
-    lengthMax,
-    luggageSizeMin,
-    luggageSizeMax,
-    zeroToHundredMin,
-    zeroToHundredMax,
-    maxSpeedMin,
-    maxSpeedMax,
-    maxTorqueMin,
-    maxTorqueMax,
-    fuelConsumptionMin,
-    fuelConsumptionMax,
+    stat,
+    params,
   } = props
 
   const [openConfig, setOpenConfig] = useState<OpenConfig>({
@@ -99,8 +91,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("height")}
           >
             <FilterNumber
-              min={heightMin}
-              max={heightMax}
+              min={stat.heightMin}
+              max={stat.heightMax}
+              valueMin={params.heightMin}
+              valueMax={params.heightMax}
               unit="mm"
               onChange={genOnChangeNumber("heightMin", "heightMax")}
             />
@@ -112,8 +106,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("width")}
           >
             <FilterNumber
-              min={widthMin}
-              max={widthMax}
+              min={stat.widthMin}
+              max={stat.widthMax}
+              valueMin={params.widthMin}
+              valueMax={params.widthMax}
               unit="mm"
               onChange={genOnChangeNumber("widthMin", "widthMax")}
             />
@@ -125,8 +121,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("length")}
           >
             <FilterNumber
-              min={lengthMin}
-              max={lengthMax}
+              min={stat.lengthMin}
+              max={stat.lengthMax}
+              valueMin={params.lengthMin}
+              valueMax={params.lengthMax}
               unit="mm"
               onChange={genOnChangeNumber("lengthMin", "lengthMax")}
             />
@@ -138,8 +136,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("luggageSize")}
           >
             <FilterNumber
-              min={luggageSizeMin}
-              max={luggageSizeMax}
+              min={stat.luggageSizeMin}
+              max={stat.luggageSizeMax}
+              valueMin={params.luggageSizeMin}
+              valueMax={params.luggageSizeMax}
               unit="L"
               onChange={genOnChangeNumber("luggageSizeMin", "luggageSizeMax")}
             />
@@ -156,8 +156,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("zeroToHundred")}
           >
             <FilterNumber
-              min={zeroToHundredMin}
-              max={zeroToHundredMax}
+              min={stat.zeroToHundredMin}
+              max={stat.zeroToHundredMax}
+              valueMin={params.zeroToHundredMin}
+              valueMax={params.zeroToHundredMax}
               unit="s"
               onChange={genOnChangeNumber("zeroToHundredMin", "zeroToHundredMax")}
             />
@@ -169,8 +171,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("maxSpeed")}
           >
             <FilterNumber
-              min={maxSpeedMin}
-              max={maxSpeedMax}
+              min={stat.maxSpeedMin}
+              max={stat.maxSpeedMax}
+              valueMin={params.maxSpeedMin}
+              valueMax={params.maxSpeedMax}
               unit="km/h"
               onChange={genOnChangeNumber("maxSpeedMin", "maxSpeedMax")}
             />
@@ -182,8 +186,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("maxTorque")}
           >
             <FilterNumber
-              min={maxTorqueMin}
-              max={maxTorqueMax}
+              min={stat.maxTorqueMin}
+              max={stat.maxTorqueMax}
+              valueMin={params.maxTorqueMin}
+              valueMax={params.maxTorqueMax}
               unit="Nm"
               onChange={genOnChangeNumber("maxTorqueMin", "maxTorqueMax")}
             />
@@ -195,8 +201,10 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             handleToggle={() => toggleOpen("fuelConsumption")}
           >
             <FilterNumber
-              min={fuelConsumptionMin}
-              max={fuelConsumptionMax}
+              min={stat.fuelConsumptionMin}
+              max={stat.fuelConsumptionMax}
+              valueMin={params.fuelConsumptionMin}
+              valueMax={params.fuelConsumptionMax}
               unit="km/L"
               onChange={genOnChangeNumber("fuelConsumptionMin", "fuelConsumptionMax")}
             />

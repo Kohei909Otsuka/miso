@@ -13,5 +13,9 @@ module Types
     field :max_torque, Int, null: true
     field :fuel_consumption, Float, null: true
     field :image_url, String, null: true
+
+    def image_url
+      object.images.first&.url
+    end
   end
 end

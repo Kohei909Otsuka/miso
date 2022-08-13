@@ -43,7 +43,7 @@ class CarFilter
   end
 
   def filter
-    cars = Car.all
+    cars = Car.includes(:images).all
 
     if height_min.present?
       cars = cars.where("cars.height >= ?", height_min)

@@ -1,5 +1,16 @@
-import React from "react"
+import React, { useState } from "react"
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Collapse from '@mui/material/Collapse';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ExpandLess from '@mui/icons-material/ExpandLess';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+
+import FilterNumber from "components/FilterNumber"
 // - 寸法
 //     t.decimal "height", precision: 10, scale: 2
 //     t.decimal "width", precision: 10, scale: 2
@@ -30,6 +41,17 @@ type CardFilterProps = {
   fuelConsumptionMax: number
 }
 
+type OpenConfig = {
+    height: boolean
+    width: boolean
+    length: boolean
+    luggageSize: boolean
+    zeroToHundred: boolean
+    maxSpeed: boolean
+    maxTorque: boolean
+    fuelConsumption: boolean
+}
+
 const CardFilter: React.FC<CardFilterProps> = (props) => {
   const {
     heightMin,
@@ -50,14 +72,55 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
     fuelConsumptionMax,
   } = props
 
+  const [openConfig, setOpenConfig] = useState<OpenConfig>({
+    height: false,
+    width: false,
+    length: false,
+    luggageSize: false,
+    zeroToHundred: false,
+    maxSpeed: false,
+    maxTorque: false,
+    fuelConsumption: false,
+  })
+
+  const toggleOpen = (k: keyof OpenConfig) => {
+    setOpenConfig({...openConfig, [k]: !openConfig[k]})
+  }
+
+
   return (
     <div>
-      <Typography>
-        寸法
-      </Typography>
-      <Typography>
-        エンジン
-      </Typography>
+      <List
+      >
+        <ListItemButton>
+          <ListItemText primary="寸法" />
+        </ListItemButton>
+        <List component="div" sx={{ pl: 2 }}>
+          <ListItemButton onClick={() => toggleOpen("height")}>
+            <ListItemText primary="高さ" primaryTypographyProps={{variant: "body2"}} />
+            {openConfig.height ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openConfig.height} timeout="auto" unmountOnExit>
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber min={heightMin} max={heightMax} unit="mm"/>
+            </Box>
+          </Collapse>
+
+          <ListItemButton onClick={() => toggleOpen("width")}>
+            <ListItemText primary="幅" primaryTypographyProps={{variant: "body2"}} />
+            {openConfig.width ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openConfig.width} timeout="auto" unmountOnExit>
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber min={widthMin} max={widthMax} unit="mm"/>
+            </Box>
+          </Collapse>
+        </List>
+
+        <ListItemButton>
+          <ListItemText primary="エンジン" />
+        </ListItemButton>
+      </List>
     </div>
   )
 }

@@ -1,0 +1,12 @@
+fragment CarField on Car {
+  id
+  slug
+  name
+  imageUrl
+  score
+  designScore
+  utilityScore
+  luxuryScore
+  engineScore
+  costScore
+}

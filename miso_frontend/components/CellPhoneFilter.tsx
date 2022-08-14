@@ -61,14 +61,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
   } = props
 
   const [openConfig, setOpenConfig] = useState<OpenConfig>({
-    height: false,
+    weight: false,
+    thickness: false,
     width: false,
-    length: false,
-    luggageSize: false,
-    zeroToHundred: false,
-    maxSpeed: false,
-    maxTorque: false,
-    fuelConsumption: false,
+    height: false,
+    screenSize: false,
+    refreshRate: false,
+    memory: false,
+    disk: false,
+    screenKinds: false,
+    isMultiSim: false,
   })
 
   const toggleOpen = (k: keyof OpenConfig) => {

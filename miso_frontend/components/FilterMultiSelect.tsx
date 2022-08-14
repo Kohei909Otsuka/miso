@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import Select from 'react-select';
 
 
+// TODO: typescriptが落ちる
+// https://react-select.com/typescript
 export type Option = {
   label: string,
   value: string,

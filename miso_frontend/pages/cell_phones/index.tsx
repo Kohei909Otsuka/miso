@@ -5,6 +5,7 @@ import {CellPhoneFilterParams} from "components/CellPhoneFilter"
 import buildSSRGrahpqlClient from "src/ssrGraphqlClient";
 import Grid2 from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 // TODO: ObjectCardにrenameするか、分ける
 import CarCard from "components/CarCard";
@@ -24,31 +25,31 @@ const CellPhonesPage: NextPage<CellPhonesPageProps> = (props) => {
   } = props
 
   return (
-    <div>
-      <Container>
-        <h1>CellPhones</h1>
-        <Grid2 container spacing={2}>
-          <Grid2 xs={3}>
-            <CellPhoneFilter stat={cellPhoneStat} params={params} />
-          </Grid2>
-          <Grid2 xs={9}>
-            <Grid2 container spacing={2}>
-              {cellPhones.map(cellPhone => (
-                <Grid2 key={cellPhone.id} xs={6} md={4}>
-                  <CarCard
-                    key={cellPhone.id}
-                    name={cellPhone.name}
-                    slug={cellPhone.slug}
-                    imageUrl={cellPhone.imageUrl}
-                    score={cellPhone.score}
-                  />
-                </Grid2>
-              ))}
-            </Grid2>
+    <Container>
+      <Typography variant="h5">
+        CellPhones
+      </Typography>
+      <Grid2 container spacing={2}>
+        <Grid2 xs={3}>
+          <CellPhoneFilter stat={cellPhoneStat} params={params} />
+        </Grid2>
+        <Grid2 xs={9}>
+          <Grid2 container spacing={2}>
+            {cellPhones.map(cellPhone => (
+              <Grid2 key={cellPhone.id} xs={6} md={4}>
+                <CarCard
+                  key={cellPhone.id}
+                  name={cellPhone.name}
+                  slug={cellPhone.slug}
+                  imageUrl={cellPhone.imageUrl}
+                  score={cellPhone.score}
+                />
+              </Grid2>
+            ))}
           </Grid2>
         </Grid2>
-      </Container>
-    </div>
+      </Grid2>
+    </Container>
   )
 }
 

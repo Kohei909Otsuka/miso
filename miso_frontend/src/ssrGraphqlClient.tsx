@@ -6,7 +6,7 @@ function buildSSRGrahpqlClient(context: any) {
   // return new GraphQLClient(`${process.env.NEXT_PUBLIC_FRONTEND_API_BASE_URL}/api/graphql_proxy`, {
   return new GraphQLClient(`${process.env.NEXT_PUBLIC_BACKEND_API_BASE_URL}/graphql`, {
     headers: {
-      cookie: context.req.headers.cookie,
+      // cookie: context.req.headers.cookie, // TODO: 車の詳細ページにいくとエラーになる
     },
   });
 }

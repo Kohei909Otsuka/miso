@@ -26,7 +26,7 @@ const CellPhonesPage: NextPage<CellPhonesPageProps> = (props) => {
   return (
     <div>
       <Container>
-        <h1>cars</h1>
+        <h1>CellPhones</h1>
         <Grid2 container spacing={2}>
           <Grid2 xs={3}>
             <CellPhoneFilter stat={cellPhoneStat} params={params} />
@@ -77,6 +77,8 @@ function queryToParams(context: any) {
   const diskMin = context.query.diskMin ? Number(context.query.diskMin) : null
   const diskMax = context.query.diskMax ? Number(context.query.diskMax) : null
 
+  const isMultiSim = context.query.isMultiSim ? true : null
+
   return {
     weightMin,
     weightMax,
@@ -94,6 +96,7 @@ function queryToParams(context: any) {
     memoryMax,
     diskMin,
     diskMax,
+    isMultiSim,
   }
 }
 

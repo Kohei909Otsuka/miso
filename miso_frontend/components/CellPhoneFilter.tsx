@@ -6,8 +6,10 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
 
 import FilterNumber from "components/FilterNumber"
+import FilterBoolean from "components/FilterBoolean"
 import FilterListItem from "components/FilterListItem"
 
 export type CellPhoneFilterParams = {
@@ -81,6 +83,24 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
     }
   }
 
+  const genOnChangeBoolean = (key: string) => {
+    return (checked: boolean) => {
+      // trueのときだけ検索
+      if (checked) {
+        router.push({
+          pathname: router.pathname,
+          query: {...router.query, [key]: checked},
+        })
+      } else {
+        delete router.query[key]
+        router.push({
+          pathname: router.pathname,
+          query: {...router.query},
+        })
+      }
+    }
+  }
+
   return (
     <div style={{position: "sticky", top: 0}}>
       <List
@@ -94,14 +114,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.weight}
             handleToggle={() => toggleOpen("weight")}
           >
-            <FilterNumber
-              min={stat.weightMin}
-              max={stat.weightMax}
-              valueMin={params.weightMin}
-              valueMax={params.weightMax}
-              unit="g"
-              onChange={genOnChangeNumber("weightMin", "weightMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.weightMin}
+                max={stat.weightMax}
+                valueMin={params.weightMin}
+                valueMax={params.weightMax}
+                unit="g"
+                onChange={genOnChangeNumber("weightMin", "weightMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -109,14 +131,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.thickness}
             handleToggle={() => toggleOpen("thickness")}
           >
-            <FilterNumber
-              min={stat.thicknessMin}
-              max={stat.thicknessMax}
-              valueMin={params.thicknessMin}
-              valueMax={params.thicknessMax}
-              unit="mm"
-              onChange={genOnChangeNumber("thicknessMin", "thicknessMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.thicknessMin}
+                max={stat.thicknessMax}
+                valueMin={params.thicknessMin}
+                valueMax={params.thicknessMax}
+                unit="mm"
+                onChange={genOnChangeNumber("thicknessMin", "thicknessMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -124,14 +148,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.width}
             handleToggle={() => toggleOpen("width")}
           >
-            <FilterNumber
-              min={stat.widthMin}
-              max={stat.widthMax}
-              valueMin={params.widthMin}
-              valueMax={params.widthMax}
-              unit="mm"
-              onChange={genOnChangeNumber("widthMin", "widthMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.widthMin}
+                max={stat.widthMax}
+                valueMin={params.widthMin}
+                valueMax={params.widthMax}
+                unit="mm"
+                onChange={genOnChangeNumber("widthMin", "widthMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -139,14 +165,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.height}
             handleToggle={() => toggleOpen("height")}
           >
-            <FilterNumber
-              min={stat.heightMin}
-              max={stat.heightMax}
-              valueMin={params.heightMin}
-              valueMax={params.heightMax}
-              unit="mm"
-              onChange={genOnChangeNumber("heightMin", "heightMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.heightMin}
+                max={stat.heightMax}
+                valueMin={params.heightMin}
+                valueMax={params.heightMax}
+                unit="mm"
+                onChange={genOnChangeNumber("heightMin", "heightMax")}
+              />
+            </Box>
           </FilterListItem>
 
         </List>
@@ -160,14 +188,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.screenSize}
             handleToggle={() => toggleOpen("screenSize")}
           >
-            <FilterNumber
-              min={stat.screenSizeMin}
-              max={stat.screenSizeMax}
-              valueMin={params.screenSizeMin}
-              valueMax={params.screenSizeMax}
-              unit="inch"
-              onChange={genOnChangeNumber("screenSizeMin", "screenSizeMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.screenSizeMin}
+                max={stat.screenSizeMax}
+                valueMin={params.screenSizeMin}
+                valueMax={params.screenSizeMax}
+                unit="inch"
+                onChange={genOnChangeNumber("screenSizeMin", "screenSizeMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -175,14 +205,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.refreshRate}
             handleToggle={() => toggleOpen("refreshRate")}
           >
-            <FilterNumber
-              min={stat.refreshRateMin}
-              max={stat.refreshRateMax}
-              valueMin={params.refreshRateMin}
-              valueMax={params.refreshRateMax}
-              unit="Hz/s"
-              onChange={genOnChangeNumber("refreshRateMin", "refreshRateMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.refreshRateMin}
+                max={stat.refreshRateMax}
+                valueMin={params.refreshRateMin}
+                valueMax={params.refreshRateMax}
+                unit="Hz/s"
+                onChange={genOnChangeNumber("refreshRateMin", "refreshRateMax")}
+              />
+            </Box>
           </FilterListItem>
         </List>
 
@@ -195,14 +227,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.memory}
             handleToggle={() => toggleOpen("memory")}
           >
-            <FilterNumber
-              min={stat.memoryMin}
-              max={stat.memoryMax}
-              valueMin={params.memoryMin}
-              valueMax={params.memoryMax}
-              unit="GB"
-              onChange={genOnChangeNumber("memoryMin", "memoryMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.memoryMin}
+                max={stat.memoryMax}
+                valueMin={params.memoryMin}
+                valueMax={params.memoryMax}
+                unit="GB"
+                onChange={genOnChangeNumber("memoryMin", "memoryMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -210,14 +244,16 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             open={openConfig.disk}
             handleToggle={() => toggleOpen("disk")}
           >
-            <FilterNumber
-              min={stat.diskMin}
-              max={stat.diskMax}
-              valueMin={params.diskMin}
-              valueMax={params.diskMax}
-              unit="GB"
-              onChange={genOnChangeNumber("diskMin", "diskMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.diskMin}
+                max={stat.diskMax}
+                valueMin={params.diskMin}
+                valueMax={params.diskMax}
+                unit="GB"
+                onChange={genOnChangeNumber("diskMin", "diskMax")}
+              />
+            </Box>
           </FilterListItem>
         </List>
 
@@ -225,6 +261,15 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
           <ListItemText primary="便利機能" />
         </ListItemButton>
         <List component="div" sx={{ pl: 2 }}>
+          <FilterListItem
+            label="マルチsim"
+            open={openConfig.isMultiSim}
+            handleToggle={() => toggleOpen("isMultiSim")}
+          >
+            <Box sx={{display: "flex", justifyContent: "flex-end"}}>
+              <FilterBoolean defaultCheck={params.isMultiSim ? true : false} onChange={genOnChangeBoolean("isMultiSim")}/>
+            </Box>
+          </FilterListItem>
         </List>
       </List>
     </div>

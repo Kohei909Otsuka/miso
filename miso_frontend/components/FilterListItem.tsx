@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ExpandLess from '@mui/icons-material/ExpandLess';
@@ -28,9 +28,7 @@ const FilterListItem: React.FC<FilterListItemProps> = (props) => {
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <Box sx={{pl: 3, pr: 3}}>
-          {children}
-        </Box>
+        {children}
       </Collapse>
     </>
   )

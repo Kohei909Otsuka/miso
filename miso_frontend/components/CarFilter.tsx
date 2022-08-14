@@ -6,6 +6,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box';
 
 import FilterNumber from "components/FilterNumber"
 import FilterListItem from "components/FilterListItem"
@@ -90,14 +91,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.height}
             handleToggle={() => toggleOpen("height")}
           >
-            <FilterNumber
-              min={stat.heightMin}
-              max={stat.heightMax}
-              valueMin={params.heightMin}
-              valueMax={params.heightMax}
-              unit="mm"
-              onChange={genOnChangeNumber("heightMin", "heightMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.heightMin}
+                max={stat.heightMax}
+                valueMin={params.heightMin}
+                valueMax={params.heightMax}
+                unit="mm"
+                onChange={genOnChangeNumber("heightMin", "heightMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -105,14 +108,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.width}
             handleToggle={() => toggleOpen("width")}
           >
-            <FilterNumber
-              min={stat.widthMin}
-              max={stat.widthMax}
-              valueMin={params.widthMin}
-              valueMax={params.widthMax}
-              unit="mm"
-              onChange={genOnChangeNumber("widthMin", "widthMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.widthMin}
+                max={stat.widthMax}
+                valueMin={params.widthMin}
+                valueMax={params.widthMax}
+                unit="mm"
+                onChange={genOnChangeNumber("widthMin", "widthMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -120,14 +125,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.length}
             handleToggle={() => toggleOpen("length")}
           >
-            <FilterNumber
-              min={stat.lengthMin}
-              max={stat.lengthMax}
-              valueMin={params.lengthMin}
-              valueMax={params.lengthMax}
-              unit="mm"
-              onChange={genOnChangeNumber("lengthMin", "lengthMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.lengthMin}
+                max={stat.lengthMax}
+                valueMin={params.lengthMin}
+                valueMax={params.lengthMax}
+                unit="mm"
+                onChange={genOnChangeNumber("lengthMin", "lengthMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -135,14 +142,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.luggageSize}
             handleToggle={() => toggleOpen("luggageSize")}
           >
-            <FilterNumber
-              min={stat.luggageSizeMin}
-              max={stat.luggageSizeMax}
-              valueMin={params.luggageSizeMin}
-              valueMax={params.luggageSizeMax}
-              unit="L"
-              onChange={genOnChangeNumber("luggageSizeMin", "luggageSizeMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.luggageSizeMin}
+                max={stat.luggageSizeMax}
+                valueMin={params.luggageSizeMin}
+                valueMax={params.luggageSizeMax}
+                unit="L"
+                onChange={genOnChangeNumber("luggageSizeMin", "luggageSizeMax")}
+              />
+            </Box>
           </FilterListItem>
         </List>
 
@@ -155,14 +164,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.zeroToHundred}
             handleToggle={() => toggleOpen("zeroToHundred")}
           >
-            <FilterNumber
-              min={stat.zeroToHundredMin}
-              max={stat.zeroToHundredMax}
-              valueMin={params.zeroToHundredMin}
-              valueMax={params.zeroToHundredMax}
-              unit="s"
-              onChange={genOnChangeNumber("zeroToHundredMin", "zeroToHundredMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.zeroToHundredMin}
+                max={stat.zeroToHundredMax}
+                valueMin={params.zeroToHundredMin}
+                valueMax={params.zeroToHundredMax}
+                unit="s"
+                onChange={genOnChangeNumber("zeroToHundredMin", "zeroToHundredMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -170,14 +181,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.maxSpeed}
             handleToggle={() => toggleOpen("maxSpeed")}
           >
-            <FilterNumber
-              min={stat.maxSpeedMin}
-              max={stat.maxSpeedMax}
-              valueMin={params.maxSpeedMin}
-              valueMax={params.maxSpeedMax}
-              unit="km/h"
-              onChange={genOnChangeNumber("maxSpeedMin", "maxSpeedMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.maxSpeedMin}
+                max={stat.maxSpeedMax}
+                valueMin={params.maxSpeedMin}
+                valueMax={params.maxSpeedMax}
+                unit="km/h"
+                onChange={genOnChangeNumber("maxSpeedMin", "maxSpeedMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -185,14 +198,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.maxTorque}
             handleToggle={() => toggleOpen("maxTorque")}
           >
-            <FilterNumber
-              min={stat.maxTorqueMin}
-              max={stat.maxTorqueMax}
-              valueMin={params.maxTorqueMin}
-              valueMax={params.maxTorqueMax}
-              unit="Nm"
-              onChange={genOnChangeNumber("maxTorqueMin", "maxTorqueMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.maxTorqueMin}
+                max={stat.maxTorqueMax}
+                valueMin={params.maxTorqueMin}
+                valueMax={params.maxTorqueMax}
+                unit="Nm"
+                onChange={genOnChangeNumber("maxTorqueMin", "maxTorqueMax")}
+              />
+            </Box>
           </FilterListItem>
 
           <FilterListItem
@@ -200,14 +215,16 @@ const CardFilter: React.FC<CardFilterProps> = (props) => {
             open={openConfig.fuelConsumption}
             handleToggle={() => toggleOpen("fuelConsumption")}
           >
-            <FilterNumber
-              min={stat.fuelConsumptionMin}
-              max={stat.fuelConsumptionMax}
-              valueMin={params.fuelConsumptionMin}
-              valueMax={params.fuelConsumptionMax}
-              unit="km/L"
-              onChange={genOnChangeNumber("fuelConsumptionMin", "fuelConsumptionMax")}
-            />
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterNumber
+                min={stat.fuelConsumptionMin}
+                max={stat.fuelConsumptionMax}
+                valueMin={params.fuelConsumptionMin}
+                valueMax={params.fuelConsumptionMax}
+                unit="km/L"
+                onChange={genOnChangeNumber("fuelConsumptionMin", "fuelConsumptionMax")}
+              />
+            </Box>
           </FilterListItem>
         </List>
       </List>

@@ -77,6 +77,8 @@ function queryToParams(context: any) {
   const diskMin = context.query.diskMin ? Number(context.query.diskMin) : null
   const diskMax = context.query.diskMax ? Number(context.query.diskMax) : null
 
+  const screenKinds = context.query.screenKinds ? context.query.screenKinds : []
+
   const isMultiSim = context.query.isMultiSim ? true : null
 
   return {
@@ -96,6 +98,7 @@ function queryToParams(context: any) {
     memoryMax,
     diskMin,
     diskMax,
+    screenKinds,
     isMultiSim,
   }
 }

@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 
 import FilterNumber from "components/FilterNumber"
 import FilterBoolean from "components/FilterBoolean"
+import FilterMultiSelect, { Option } from "components/FilterMultiSelect"
 import FilterListItem from "components/FilterListItem"
 
 export type CellPhoneFilterParams = {
@@ -29,8 +30,8 @@ export type CellPhoneFilterParams = {
     memoryMax: number | null
     diskMin: number | null
     diskMax: number | null
-    screenKinds: string[] | null // TODO: 複数選択のUI
-    isMultiSim: boolean | null // TODO: booleanのUI
+    screenKinds: string[]
+    isMultiSim: boolean | null
 }
 
 type CellPhoneFilterProps = {
@@ -100,6 +101,20 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
       }
     }
   }
+
+  const genOnChangeMultiSelect = (key: string) => {
+    return (selectedOptions: Option[]) => {
+      router.push({
+        pathname: router.pathname,
+        query: {...router.query, [key]: selectedOptions.map(op => op.value)},
+      })
+    }
+  }
+
+  const screenKindOptions = [
+    {label: "有機EL", value: "el"},
+    {label: "IPS", value: "ips"},
+  ]
 
   return (
     <div style={{position: "sticky", top: 0}}>
@@ -216,6 +231,20 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
               />
             </Box>
           </FilterListItem>
+
+          <FilterListItem
+            label="種類"
+            open={openConfig.screenKinds}
+            handleToggle={() => toggleOpen("screenKinds")}
+          >
+            <Box sx={{pl: 3, pr: 3}}>
+              <FilterMultiSelect
+                options={screenKindOptions}
+                defaultValues={screenKindOptions.filter(op => params.screenKinds.includes(op.value))}
+                onChange={genOnChangeMultiSelect("screenKinds")}
+              />
+            </Box>
+          </FilterListItem>
         </List>
 
         <ListItemButton>
@@ -267,7 +296,10 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
             handleToggle={() => toggleOpen("isMultiSim")}
           >
             <Box sx={{display: "flex", justifyContent: "flex-end"}}>
-              <FilterBoolean defaultCheck={params.isMultiSim ? true : false} onChange={genOnChangeBoolean("isMultiSim")}/>
+              <FilterBoolean
+                defaultCheck={params.isMultiSim ? true : false}
+                onChange={genOnChangeBoolean("isMultiSim")}
+              />
             </Box>
           </FilterListItem>
         </List>

@@ -132,6 +132,7 @@ export type QueryCarsArgs = {
   maxSpeedMin?: InputMaybe<Scalars['Int']>;
   maxTorqueMax?: InputMaybe<Scalars['Int']>;
   maxTorqueMin?: InputMaybe<Scalars['Int']>;
+  slugs?: InputMaybe<Array<Scalars['String']>>;
   widthMax?: InputMaybe<Scalars['Float']>;
   widthMin?: InputMaybe<Scalars['Float']>;
   zeroToHundredMax?: InputMaybe<Scalars['Float']>;
@@ -203,6 +204,13 @@ export type CarsQueryVariables = Exact<{
 
 
 export type CarsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, name: string, slug: string, score: number, imageUrl?: string | null }>, carStat: { __typename?: 'CarStat', widthMin: number, widthMax: number, heightMin: number, heightMax: number, lengthMin: number, lengthMax: number, luggageSizeMin: number, luggageSizeMax: number, zeroToHundredMin: number, zeroToHundredMax: number, maxSpeedMin: number, maxSpeedMax: number, maxTorqueMin: number, maxTorqueMax: number, fuelConsumptionMin: number, fuelConsumptionMax: number } };
+
+export type CarsBySlugsQueryVariables = Exact<{
+  slugs?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+}>;
+
+
+export type CarsBySlugsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, slug: string, name: string, imageUrl?: string | null, score: number, designScore: number, utilityScore: number, luxuryScore: number, engineScore: number, costScore: number }> };
 
 export type CellPhonesQueryVariables = Exact<{
   weightMin?: InputMaybe<Scalars['Float']>;
@@ -342,6 +350,17 @@ ${CarStatFieldFragmentDoc}`;
 
 export function useCarsQuery(options?: Omit<Urql.UseQueryArgs<CarsQueryVariables>, 'query'>) {
   return Urql.useQuery<CarsQuery, CarsQueryVariables>({ query: CarsDocument, ...options });
+};
+export const CarsBySlugsDocument = gql`
+    query CarsBySlugs($slugs: [String!]) {
+  cars(slugs: $slugs) {
+    ...CarField
+  }
+}
+    ${CarFieldFragmentDoc}`;
+
+export function useCarsBySlugsQuery(options?: Omit<Urql.UseQueryArgs<CarsBySlugsQueryVariables>, 'query'>) {
+  return Urql.useQuery<CarsBySlugsQuery, CarsBySlugsQueryVariables>({ query: CarsBySlugsDocument, ...options });
 };
 export const CellPhonesDocument = gql`
     query CellPhones($weightMin: Float, $weightMax: Float, $thicknessMin: Float, $thicknessMax: Float, $widthMin: Float, $widthMax: Float, $heightMin: Float, $heightMax: Float, $screenSizeMin: Float, $screenSizeMax: Float, $refreshRateMin: Int, $refreshRateMax: Int, $memoryMin: Int, $memoryMax: Int, $diskMin: Int, $diskMax: Int, $screenKinds: [String!], $isMultiSim: Boolean) {

@@ -4,20 +4,23 @@ import { getSdk } from "graphql/ssr.generated";
 import buildSSRGrahpqlClient from "src/ssrGraphqlClient";
 
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Grid2 from '@mui/material/Unstable_Grid2';
 
+import CarCard from "components/CarCard"
 import SpecGraph from "components/SpecGraph"
 import SpecTable from "components/SpecTable"
 
 type CarPageProps = {
-  car: CarFieldFragment
+  cars: CarFieldFragment[]
 }
 
 const CarPage: NextPage<CarPageProps> = (props) => {
-  const { car } = props
-  if (!car) {
+  const { cars } = props
+
+  if (!cars) {
     return null
   }
 
@@ -25,18 +28,24 @@ const CarPage: NextPage<CarPageProps> = (props) => {
     <Container>
       <Box sx={{display: "flex", flexDirection: "column", alignItems: "center"}}>
 
-        <Typography variant="h5" sx={{mt: 4, mb: 4}}>
-          {car.name}
-        </Typography>
+        <Stack
+          sx={{mt: 4}}
+          direction="row"
+          divider={<Divider orientation="vertical" flexItem />}
+          spacing={2}
+        >
+          {cars.map(car => (
+            <CarCard
+              name={car.name}
+              slug={car.slug}
+              imageUrl={car.imageUrl}
+              score={car.score}
+            />
+          ))}
+        </Stack>
 
-        <Box sx={{display: "flex", mb: 4}}>
-          <img
-              src={car.imageUrl ? car.imageUrl : "https://tomo-iki.jp/wp-content/uploads/2019/06/noimage.png"}
-              height={300}
-          />
-          <Box sx={{height: 300, width: 400}}>
-            <SpecGraph />
-          </Box>
+        <Box sx={{height: 300, width: 400}}>
+          <SpecGraph cars={cars}/>
         </Box>
 
         <SpecTable />
@@ -55,11 +64,11 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: any) {
   const client = buildSSRGrahpqlClient(context);
   const sdk = getSdk(client);
-  const slug = context.params.slug
-  const { car } = await sdk.Car({slug})
+  const commaSparatedSlugs = context.params.slugs
+  const { cars } = await sdk.CarsBySlugs({slugs: commaSparatedSlugs.split(",")})
   return {
     props: {
-      car,
+      cars,
     },
     revalidate: 60 * 30, // 30minsのcache
   }

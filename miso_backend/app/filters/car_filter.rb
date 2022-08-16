@@ -1,5 +1,6 @@
 class CarFilter
-  attr_accessor :height_min,
+  attr_accessor :slugs,
+    :height_min,
     :height_max,
     :width_min,
     :width_max,
@@ -17,6 +18,8 @@ class CarFilter
     :fuel_consumption_max
 
   def initialize(params)
+    @slugs = params.fetch(:slugs, nil)
+
     @height_min = params.fetch(:height_min, nil)
     @height_max = params.fetch(:height_max, nil)
 
@@ -44,6 +47,10 @@ class CarFilter
 
   def filter
     cars = Car.includes(:images).all
+
+    if slugs.present?
+      cars = cars.where(slug: slugs)
+    end
 
     if height_min.present?
       cars = cars.where("cars.height >= ?", height_min)

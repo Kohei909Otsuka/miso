@@ -1,0 +1,9 @@
+query CarsBySlugs(
+  $slugs: [String!]
+) {
+  cars(
+    slugs: $slugs
+  ) {
+    ...CarField
+  }
+}

@@ -2,6 +2,7 @@ module Resolvers
   class CarsResolver < GraphQL::Schema::Resolver
     type [Types::CarType], null: false
 
+    argument :slugs, [String], required: false
     argument :height_min, Float, required: false
     argument :height_max, Float, required: false
     argument :width_min, Float, required: false
@@ -21,6 +22,7 @@ module Resolvers
 
     def resolve(**args)
       f = CarFilter.new({
+        slugs: args[:slugs],
         height_min: args[:height_min],
         height_max: args[:height_max],
         width_min: args[:width_min],

@@ -1,4 +1,6 @@
 import React from "react"
+import _ from "lodash"
+import { CarFieldFragment } from "graphql/generated"
 import {
   Radar,
   RadarChart,
@@ -8,57 +10,85 @@ import {
   Legend,
 } from 'recharts';
 
-const data = [
-  {
-    subject: 'Math',
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: 'Chinese',
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'English',
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: 'Geography',
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: 'Physics',
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: 'History',
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+import {
+  red,
+  pink,
+  purple,
+  indigo,
+  blue,
+  cyan,
+  teal,
+  green,
+  lime,
+  orange,
+} from "@mui/material/colors"
 
+const COLOR_STRENGTH = 300
+const RadarColors = [
+  red[COLOR_STRENGTH],
+  indigo[COLOR_STRENGTH],
+  orange[COLOR_STRENGTH],
+  blue[COLOR_STRENGTH],
+  teal[COLOR_STRENGTH],
+  green[COLOR_STRENGTH],
+  purple[COLOR_STRENGTH],
+  lime[COLOR_STRENGTH],
+  cyan[COLOR_STRENGTH],
+  pink[COLOR_STRENGTH],
+]
 type SpecGraphProps = {
+  cars: CarFieldFragment[]
+}
+
+const genDataFromCars = (cars: CarFieldFragment[]) => {
+  const slugs = cars.map(c => c.slug)
+
+  const design = _.zipObject(slugs, cars.map(c => c.designScore))
+  const utility = _.zipObject(slugs, cars.map(c => c.utilityScore))
+  const luxury = _.zipObject(slugs, cars.map(c => c.luxuryScore))
+  const engine = _.zipObject(slugs, cars.map(c => c.engineScore))
+  const cost = _.zipObject(slugs, cars.map(c => c.costScore))
+  return [
+    {
+      ...design,
+      subject: "Design",
+    },
+    {
+      ...utility,
+      subject: "Utility",
+    },
+    {
+      ...luxury,
+      subject: "Luxury",
+    },
+    {
+      ...engine,
+      subject: "Engine",
+    },
+    {
+      ...cost,
+      subject: "Cost",
+    },
+  ]
 }
 
 // https://recharts.org/en-US/examples/SimpleRadarChart
 const SpecGraph: React.FC<SpecGraphProps> = (props) => {
+  const { cars } = props
+  const data = genDataFromCars(cars)
   return (
     <ResponsiveContainer width="100%" height="100%">
       <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
         <PolarGrid />
         <PolarAngleAxis dataKey="subject" />
-        <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.5} />
-        <Radar name="Tom" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.5} />
+        {cars.map((car, idx) => (
+          <Radar
+            name={car.name}
+            dataKey={car.slug}
+            fill={RadarColors[idx % RadarColors.length]}
+            fillOpacity={0.5}
+          />
+        ))}
         <Legend />
       </RadarChart>
     </ResponsiveContainer>

@@ -166,7 +166,7 @@ export type QueryCellPhonesArgs = {
   widthMin?: InputMaybe<Scalars['Float']>;
 };
 
-export type CarFieldFragment = { __typename?: 'Car', id: string, slug: string, name: string, imageUrl?: string | null, score: number, designScore: number, utilityScore: number, luxuryScore: number, engineScore: number, costScore: number };
+export type CarFieldFragment = { __typename?: 'Car', id: string, slug: string, name: string, imageUrl?: string | null, score: number, designScore: number, utilityScore: number, luxuryScore: number, engineScore: number, costScore: number, height?: number | null, width?: number | null, length?: number | null, luggageSize?: number | null, zeroToHundred?: number | null, maxSpeed?: number | null, maxTorque?: number | null, fuelConsumption?: number | null };
 
 export type CarStatFieldFragment = { __typename?: 'CarStat', widthMin: number, widthMax: number, heightMin: number, heightMax: number, lengthMin: number, lengthMax: number, luggageSizeMin: number, luggageSizeMax: number, zeroToHundredMin: number, zeroToHundredMax: number, maxSpeedMin: number, maxSpeedMax: number, maxTorqueMin: number, maxTorqueMax: number, fuelConsumptionMin: number, fuelConsumptionMax: number };
 
@@ -181,7 +181,7 @@ export type CarQueryVariables = Exact<{
 }>;
 
 
-export type CarQuery = { __typename?: 'Query', car: { __typename?: 'Car', id: string, slug: string, name: string, imageUrl?: string | null, score: number, designScore: number, utilityScore: number, luxuryScore: number, engineScore: number, costScore: number } };
+export type CarQuery = { __typename?: 'Query', car: { __typename?: 'Car', id: string, slug: string, name: string, imageUrl?: string | null, score: number, designScore: number, utilityScore: number, luxuryScore: number, engineScore: number, costScore: number, height?: number | null, width?: number | null, length?: number | null, luggageSize?: number | null, zeroToHundred?: number | null, maxSpeed?: number | null, maxTorque?: number | null, fuelConsumption?: number | null } };
 
 export type CarsQueryVariables = Exact<{
   heightMin?: InputMaybe<Scalars['Float']>;
@@ -210,7 +210,7 @@ export type CarsBySlugsQueryVariables = Exact<{
 }>;
 
 
-export type CarsBySlugsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, slug: string, name: string, imageUrl?: string | null, score: number, designScore: number, utilityScore: number, luxuryScore: number, engineScore: number, costScore: number }> };
+export type CarsBySlugsQuery = { __typename?: 'Query', cars: Array<{ __typename?: 'Car', id: string, slug: string, name: string, imageUrl?: string | null, score: number, designScore: number, utilityScore: number, luxuryScore: number, engineScore: number, costScore: number, height?: number | null, width?: number | null, length?: number | null, luggageSize?: number | null, zeroToHundred?: number | null, maxSpeed?: number | null, maxTorque?: number | null, fuelConsumption?: number | null }> };
 
 export type CellPhonesQueryVariables = Exact<{
   weightMin?: InputMaybe<Scalars['Float']>;
@@ -248,6 +248,14 @@ export const CarFieldFragmentDoc = gql`
   luxuryScore
   engineScore
   costScore
+  height
+  width
+  length
+  luggageSize
+  zeroToHundred
+  maxSpeed
+  maxTorque
+  fuelConsumption
 }
     `;
 export const CarStatFieldFragmentDoc = gql`

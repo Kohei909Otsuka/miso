@@ -44,11 +44,13 @@ const CarPage: NextPage<CarPageProps> = (props) => {
           ))}
         </Stack>
 
-        <Box sx={{height: 300, width: 400}}>
+        <Box sx={{height: 500, width: 400, mt: 4}}>
           <SpecGraph cars={cars}/>
         </Box>
 
-        <SpecTable />
+        <Box sx={{mt: 4}}>
+          <SpecTable cars={cars}/>
+        </Box>
       </Box>
     </Container>
   )

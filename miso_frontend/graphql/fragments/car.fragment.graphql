@@ -9,4 +9,12 @@ fragment CarField on Car {
   luxuryScore
   engineScore
   costScore
+  height
+  width
+  length
+  luggageSize
+  zeroToHundred
+  maxSpeed
+  maxTorque
+  fuelConsumption
 }

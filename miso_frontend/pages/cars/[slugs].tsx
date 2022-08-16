@@ -36,6 +36,7 @@ const CarPage: NextPage<CarPageProps> = (props) => {
         >
           {cars.map(car => (
             <CarCard
+              key={car.id}
               name={car.name}
               slug={car.slug}
               imageUrl={car.imageUrl}

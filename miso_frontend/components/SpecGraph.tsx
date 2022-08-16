@@ -83,6 +83,7 @@ const SpecGraph: React.FC<SpecGraphProps> = (props) => {
         <PolarAngleAxis dataKey="subject" />
         {cars.map((car, idx) => (
           <Radar
+            key={car.id}
             name={car.name}
             dataKey={car.slug}
             fill={RadarColors[idx % RadarColors.length]}

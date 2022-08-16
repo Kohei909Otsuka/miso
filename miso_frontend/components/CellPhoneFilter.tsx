@@ -105,7 +105,7 @@ const CellPhoneFilter: React.FC<CellPhoneFilterProps> = (props) => {
   }
 
   const genOnChangeMultiSelect = (key: string) => {
-    return (selectedOptions: Option[]) => {
+    return (selectedOptions: readonly Option[]) => {
       router.push({
         pathname: router.pathname,
         query: {...router.query, [key]: selectedOptions.map(op => op.value)},

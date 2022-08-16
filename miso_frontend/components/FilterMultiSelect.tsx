@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Select from 'react-select';
+import Select, {SingleValueProps} from 'react-select';
 
 
 // TODO: typescriptが落ちる
@@ -11,14 +11,14 @@ export type Option = {
 type FilterMultiSelectProps = {
   options: Option[]
   defaultValues: Option[]
-  onChange: (selected: Option[]) => void
+  onChange: (selected: readonly Option[]) => void
 }
 
 const FilterMultiSelect: React.FC<FilterMultiSelectProps> = (props) => {
   const { options, defaultValues, onChange} = props
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
+  const [selectedOptions, setSelectedOptions] = useState< readonly Option[]>([])
 
-  const handleChange = (selected: Option[]) => {
+  const handleChange = (selected: readonly Option[]) => {
     setSelectedOptions(selected)
     onChange(selected)
   }
